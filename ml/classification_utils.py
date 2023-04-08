@@ -10,6 +10,8 @@ import time
 import torch
 from PIL import Image
 from torchvision import transforms
+from matplotlib import pyplot as plt
+import cv2 as cv
 
 from config import Configuration
 
@@ -84,3 +86,20 @@ def classify_image(model_id, img_id):
     img.close()
     time.sleep(5)
     return output
+
+
+def create_histogram(image_id, hist_path):
+    """Function to create and save the corresponding
+    histogram of a specific image in a directory.
+    Returns the path of the Histogram."""
+    image = os.path.join(conf.image_folder_path, image_id)
+    hist = os.path.join(hist_path, "Histogram.JPEG")
+    if not os.path.exists(hist_path):
+        os.mkdir(hist_path)
+
+    img = cv.imread(image)
+    vals = img.mean(axis=2).flatten()
+    b, bins, patches = plt.hist(vals, 255)
+    plt.xlim([0, 255])
+    plt.savefig(hist)
+    return hist
