@@ -8,7 +8,7 @@ import logging
 import os
 import time
 import torch
-from PIL import Image
+from PIL import Image, ImageEnhance
 from torchvision import transforms
 from matplotlib import pyplot as plt
 import cv2 as cv
@@ -104,3 +104,28 @@ def create_histogram(image_id, hist_path):
     plt.xlim([0, 255])
     plt.savefig(hist)
     return hist_id
+
+
+def image_transformation(image_id, transformation_path, color, contrast, brightness, sharpness):
+    """Function to perform a transformation on an image
+       corresponding to the image_id using the user
+       parameters. Return the id of the transformed image."""
+    if not os.path.exists(transformation_path):
+        os.mkdir(transformation_path)
+
+    transformation_id = "Modified_" + image_id
+    image = os.path.join(conf.image_folder_path, image_id)
+    transformed_image = os.path.join(transformation_path, "Modified_" + image_id)
+
+    im = Image.open(image)
+    color_enhancer = ImageEnhance.Color(im)
+    im = color_enhancer.enhance(color)
+    contrast_enhancer = ImageEnhance.Contrast(im)
+    im = contrast_enhancer.enhance(contrast)
+    brightness_enhancer = ImageEnhance.Brightness(im)
+    im = brightness_enhancer.enhance(brightness)
+    sharpness_enhancer = ImageEnhance.Color(im)
+    im = sharpness_enhancer.enhance(sharpness)
+
+    im.save(transformed_image)
+    return transformation_id
