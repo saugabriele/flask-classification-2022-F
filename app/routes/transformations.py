@@ -20,4 +20,5 @@ def transformations():
         transformation_path = 'app/static/Transformations'
         transformation_id = image_transformation(image_id, transformation_path, color_en, contrast_en,
                                                  brightness_en, sharpness_en)
+        return render_template('transformation_output.html', image_id=image_id, transformation_id=transformation_id)
     return render_template('transformation_select.html', form=form)
