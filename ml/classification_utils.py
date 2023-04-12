@@ -98,6 +98,7 @@ def create_histogram(image_id, hist_path):
     if not os.path.exists(hist_path):
         os.mkdir(hist_path)
 
+    plt.cla()
     img = cv.imread(image)
     vals = img.mean(axis=2).flatten()
     b, bins, patches = plt.hist(vals, 255)
