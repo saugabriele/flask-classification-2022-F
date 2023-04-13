@@ -130,3 +130,9 @@ def image_transformation(image_id, transformation_path, color, contrast, brightn
 
     im.save(transformed_image)
     return transformation_id
+
+
+def check_path(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
+    return
