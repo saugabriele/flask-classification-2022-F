@@ -4,3 +4,4 @@ from .info import *
 from .home import *
 from .histogram_selection import *
 from .transformations import *
+from .classification_upload import *
