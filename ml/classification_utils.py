@@ -92,11 +92,10 @@ def create_histogram(image_id, hist_path):
     """Function to create and save the corresponding
     histogram of a specific image in a directory.
     Returns the id of the Histogram."""
+
     hist_id = "Histogram.JPEG"
     image = os.path.join(conf.image_folder_path, image_id)
     hist = os.path.join(hist_path, hist_id)
-    if not os.path.exists(hist_path):
-        os.mkdir(hist_path)
 
     plt.cla()
     img = cv.imread(image)
@@ -111,8 +110,6 @@ def image_transformation(image_id, transformation_path, color, contrast, brightn
     """Function to perform a transformation on an image
        corresponding to the image_id using the user
        parameters. Return the id of the transformed image."""
-    if not os.path.exists(transformation_path):
-        os.mkdir(transformation_path)
 
     transformation_id = "Modified_" + image_id
     image = os.path.join(conf.image_folder_path, image_id)
@@ -130,3 +127,11 @@ def image_transformation(image_id, transformation_path, color, contrast, brightn
 
     im.save(transformed_image)
     return transformation_id
+
+
+def check_path(path):
+    """ Function to check if a path already exist
+    otherwise it will create the new path."""
+    if not os.path.exists(path):
+        os.mkdir(path)
+    return
