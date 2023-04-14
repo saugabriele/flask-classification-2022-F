@@ -10,3 +10,4 @@ flask-wtf
 matplotlib~=3.7.1
 WTForms~=3.0.1
 opencv-python~=4.7.0.72
+Werkzeug~=2.2.3

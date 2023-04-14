@@ -11,6 +11,7 @@ import torch
 from PIL import Image, ImageEnhance
 from torchvision import transforms
 from matplotlib import pyplot as plt
+from werkzeug.utils import secure_filename
 import cv2 as cv
 
 from config import Configuration
@@ -134,4 +135,22 @@ def check_path(path):
     otherwise it will create the new path."""
     if not os.path.exists(path):
         os.mkdir(path)
+    return
+
+
+def allowed_file(filename):
+    """Function to check if the extension of the
+    file is valid. In this case it will return True
+    otherwise False."""
+    allowed_extensions = {'png', 'jpg', 'jpeg'}
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
+
+def save_image(image):
+    """Function to save the image passed in
+    the upload folder"""
+    check_path(conf.upload_image_path)
+    filename = secure_filename(image.filename)
+    image.save(os.path.join(conf.upload_image_path, filename))
     return
