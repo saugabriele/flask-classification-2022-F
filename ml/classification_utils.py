@@ -135,3 +135,10 @@ def check_path(path):
     if not os.path.exists(path):
         os.mkdir(path)
     return
+
+def allowed_file(filename):
+    return False
+
+
+def save_image(image):
+    pass
