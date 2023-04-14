@@ -10,6 +10,7 @@ class Configuration:
     image_folder_path = os.path.join(project_root, 'app/static/imagenet_subset')
     histogram_path = os.path.join(project_root, 'app/static/Histogram')
     transformation_path = os.path.join(project_root, 'app/static/Transformations')
+    upload_image_path = os.path.join(project_root, 'app/static/Upload_Images')
 
     models = ('resnet18', 'alexnet', 'vgg16', 'inception_v3',)
     # web server
